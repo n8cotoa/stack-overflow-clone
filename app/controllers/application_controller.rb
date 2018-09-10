@@ -11,7 +11,14 @@ class ApplicationController < ActionController::Base
   def authorize
     if !current_user
       flash[:alert] = "You aren't authorized to visit that page."
-      redirect_to '/'
+      redirect_to '/signin'
+    end
+  end
+
+  def authorize_user_page
+    if current_user.id != params['id'].to_i
+      flash[:alert] = "You aren't authorized to visit that page."
+      redirect_to '/signin'
     end
   end
 end
