@@ -12,7 +12,7 @@
         <p><%= response.comment %></p>
         <p><%= response.user.name %></p>
         <% if response.user_id == session[:user_id] %>
-          <p><%= link_to 'Delete Response', post_response_path(response), :data => {:method => 'delete'} %></p>
+          <p><%= link_to 'Delete Response', post_response_path(@post, response), :data => {:method => 'delete', :id => response.id} %></p>
         <% end %>
       </div>
     </div>
