@@ -1,2 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  margin-top: 50px;
+}
+
+.navbar-right {
+  margin-right: 10px;
+}

@@ -8,19 +8,41 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <% if current_user %>
-      <%= current_user.email %> | <%= link_to "Sign out", '/signout' %>
-    <% else %>
-      <%= link_to "Sign up", 'signup' %> | <%= link_to "Sign in", '/signin' %>
-    <% end %>
-
-    <div class="flash">
-      <%= flash[:alert] %>
-      <%= flash[:notice] %>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
     </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+      <p class="navbar-text navbar-right"><% if current_user %>
+        <%= current_user.email %> | <%= link_to "Sign out", '/signout' %>
+      <% else %>
+        <%= link_to "Sign up", 'signup' %> | <%= link_to "Sign in", '/signin' %>
+      <% end %></p>
+    </div>
+  </div>
+  </nav>
+  <body>
+    <div class="container">
 
-    <%= yield %>
+
+      <div class="flash">
+        <%= flash[:alert] %>
+        <%= flash[:notice] %>
+      </div>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

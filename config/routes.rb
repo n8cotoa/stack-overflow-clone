@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => 'posts#index'
 
   resources :users, :except => [:new]
   get '/signup' => 'users#new'
@@ -7,4 +8,8 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   get '/signout' => 'sessions#destroy'
+
+  resources :posts do
+    resources :responses, :only => [:new, :create, :update, :destroy]
+  end
 end
