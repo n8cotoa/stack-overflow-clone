@@ -1,6 +1,12 @@
 
 <% @posts.each do |post| %>
-  <div class="card">
-    <p><%= link_to post.title, post_path(post) %></p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <p class="panel-title"><%= link_to post.title, post_path(post) %></p>
+      <p class="text-right"><%= post.user.name %></p>
+    </div>
+    <div class="panel-body question-preview">
+      <p><%= post.body %></p>
+    </div>
   </div>
 <% end %>

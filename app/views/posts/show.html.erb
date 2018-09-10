@@ -1,3 +1,22 @@
-<h1><%= @post.title %></h1>
-
-<p><%= @post.body %></p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title"><%= @post.title %></h1>
+  </div>
+  <div class="panel-body">
+    <p><%= @post.body %></p>
+  </div>
+  <% @post.responses.each do |response| %>
+  <div class="panel-body">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p><%= response.comment %></p>
+        <p><%= response.user.name %></p>
+        <% if response.user_id == session[:user_id] %>
+          <p><%= link_to 'Delete Response', post_response_path(response), :data => {:method => 'delete'} %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<span><%= link_to "Add Response", new_post_response_path(@post), class: 'btn btn-primary' %></span>

@@ -2,9 +2,16 @@
 @import "bootstrap";
 
 body {
-  margin-top: 50px;
+  margin-top: 75px;
 }
 
 .navbar-right {
   margin-right: 10px;
+}
+
+.question-preview p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 350px;
 }

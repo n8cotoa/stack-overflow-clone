@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @user = User.find(session[:user_id])
     @post = Post.new(post_params)
     if @post.save
-      flash[:alert] = "Post successfly created."
+      flash[:alert] = "Post successfully created."
       redirect_to post_path(@post)
     else
       flash[:alert] = "Post not created, please check your submission."
