@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authorize, only: [:new]
 
   def index
-    @posts = Post.all.page
+    @posts = Post.all.page(params[:page])
   end
 
   def new

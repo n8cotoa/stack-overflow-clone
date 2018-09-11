@@ -12,5 +12,6 @@
   </div>
 <% end %>
 
-<%= link_to_previous_page @posts, 'Previous Page' %>
-<%= link_to_next_page @posts, 'Next Page' %>
+<nav class="navbar navbar-default navbar-fixed-bottom pagination">
+  <%= paginate @posts %>
+</nav>
