@@ -1,3 +1,4 @@
+<%= page_entries_info @posts %>
 
 <% @posts.each do |post| %>
   <div class="panel panel-default">
@@ -10,3 +11,6 @@
     </div>
   </div>
 <% end %>
+
+<%= link_to_previous_page @posts, 'Previous Page' %>
+<%= link_to_next_page @posts, 'Next Page' %>

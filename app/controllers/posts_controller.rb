@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  before_action :authorize, only: [:new]
+
   def index
-    @posts = Post.all
+    @posts = Post.all.page
   end
 
   def new

@@ -11,8 +11,8 @@ Things you may want to cover:
 
 * Configuration
 
-* Database creation
-
+# Database creation
+ `rails db:migrate:reset db:seed`
 * Database initialization
 
 * How to run the test suite
