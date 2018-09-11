@@ -22,8 +22,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    if @user == current_user
+      flash[:alert] = "🤬🤬🤬🤬🤬 #{@user.name}, please stop trying to delete yourself!! 🤬🤬🤬🤬🤬"
+      redirect_to '/admin'
+    else
+      @user.destroy
+      redirect_to '/admin'
+    end
+  end
+
+
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :permission)
   end
 end

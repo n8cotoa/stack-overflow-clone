@@ -26,18 +26,22 @@ last_user = User.all.last.id
 
 200.times do
   random_user = Random.rand(first_user..last_user)
-  Post.create!(title: Faker::Hipster.sentence,
-               body: Faker::Hipster.paragraph,
-               user_id: random_user)
+  post = Post.create!(title: Faker::Hipster.sentence,
+                      body: Faker::Hipster.paragraph,
+                      user_id: random_user)
+  created = Faker::Time.between(4.days.ago, Date.today, :morning)
+  post.update(:created_at => created, :updated_at => Faker::Time.between(created, Date.today, :evening))
 end
 
 first_post = Post.all.first.id
 last_post = Post.all.last.id
 
 1000.times do
-  random_user = Random.rand(first_user..last_user)
-  random_post = Random.rand(first_post..last_post)
+  random_user_id = Random.rand(first_user..last_user)
+  random_post_id = Random.rand(first_post..last_post)
+  random_post = Post.find(random_post_id)
   Response.create!(comment: Faker::VForVendetta.quote,
-                   user_id: random_user,
-                   post_id: random_post)
+                   user_id: random_user_id,
+                   post_id: random_post_id,
+                   created_at: Faker::Time.between(random_post.created_at, Date.today, :evening))
 end

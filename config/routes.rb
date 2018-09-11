@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :responses, :only => [:new, :create, :update, :destroy]
   end
+
+  resources :admin do
+    put :toggle
+  end
+
 end

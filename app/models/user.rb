@@ -6,6 +6,7 @@ class User < ApplicationRecord
   before_save :encrypt_password
   has_many :posts
   has_many :responses
+  before_destroy :destroy_responses_and_posts
 
   def encrypt_password
     self.password_salt = BCrypt::Engine.generate_salt
@@ -19,6 +20,21 @@ class User < ApplicationRecord
       user
     else
       nil
+    end
+  end
+
+  def destroy_responses_and_posts
+    self.responses.destroy_all
+    self.posts.destroy_all
+  end
+
+  def toggle_admin_status
+
+    if self.permission == 'user'
+      self.update(permission: 'admin')
+    else
+      byebug
+      self.update(permission: 'user')
     end
   end
 end

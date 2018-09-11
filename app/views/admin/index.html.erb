@@ -1,0 +1,30 @@
+<h1>Admin Space</h1>
+
+<p>Questions asked today: <%= @number_of_posts_from_today %></p>
+
+<p>Responses posted today: <%= @number_of_responses_from_today %></p>
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+  <table class="table">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Permission</th>
+      <th>Delete User</th>
+      <th>Toggle Admin Role</th>
+    </tr>
+    <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.permission %></td>
+        <td><%= link_to 'Delete User', user_path(user), :data => {:confirm => "You sure you want to delete #{user.name}?", :method => 'delete'} %></td>
+        <td><%= link_to 'Toggle', admin_toggle_path(session[:user_id], user), :data => {:method => 'put'}%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
