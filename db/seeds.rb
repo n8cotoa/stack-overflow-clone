@@ -45,3 +45,14 @@ last_post = Post.all.last.id
                    post_id: random_post_id,
                    created_at: Faker::Time.between(random_post.created_at, Date.today, :evening))
 end
+
+first_response_id = Response.all.first.id
+last_response_id = Response.all.last.id
+
+10000.times do
+  random_user_id = Random.rand(first_user..last_user)
+  random_response_id = Random.rand(first_response_id..last_response_id)
+  Vote.create!(user_id: random_user_id,
+               response_id: random_response_id,
+               count: 1)
+end

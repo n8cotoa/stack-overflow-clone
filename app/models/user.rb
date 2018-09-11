@@ -6,6 +6,7 @@ class User < ApplicationRecord
   before_save :encrypt_password
   has_many :posts
   has_many :responses
+  has_many :votes
   before_destroy :destroy_responses_and_posts
 
   def encrypt_password
@@ -29,11 +30,9 @@ class User < ApplicationRecord
   end
 
   def toggle_admin_status
-
     if self.permission == 'user'
       self.update(permission: 'admin')
     else
-      byebug
       self.update(permission: 'user')
     end
   end
