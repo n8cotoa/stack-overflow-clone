@@ -10,6 +10,7 @@
     <% @post.responses.each do |response| %>
     <div class="panel panel-default">
         <div class="panel-body">
+          <p> Number of Votes: <%= response.votes.count %></p>
           <p><%= response.comment %></p>
           <p><%= response.user.name %></p>
           <% if response.user_id == session[:user_id] %>
