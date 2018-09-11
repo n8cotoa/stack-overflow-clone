@@ -16,6 +16,7 @@
           <% if response.user_id == session[:user_id] %>
             <p><%= link_to 'Delete Response', post_response_path(@post, response), :data => {:method => 'delete', :id => response.id} %></p>
           <% end %>
+          <span><%= link_to "Vote Up", post_vote_path(@post, response), :data => {:method => 'post'}, class: 'btn btn-primary' %></span>
         </div>
     </div>
     <% end %>

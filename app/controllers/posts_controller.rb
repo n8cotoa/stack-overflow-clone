@@ -26,8 +26,19 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def vote
+    @post = Post.find(params[:post_id])
+    @user = User.find(session[:user_id])
+    @response = Response.find(params[:format])
+    Vote.create(user_id: @user.id, response_id: @response.id, count: 1)
+    redirect_to post_path(@post)
+  end
+
 private
   def post_params
     params.require(:post).permit(:title, :body, :user_id)
+  end
+  def vote_params
+    params.require(:vote).permit(:user_id, :response_id, :count)
   end
 end

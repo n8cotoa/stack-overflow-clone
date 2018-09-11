@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :responses, :only => [:new, :create, :update, :destroy]
+    post :vote
   end
 
   resources :admin do
